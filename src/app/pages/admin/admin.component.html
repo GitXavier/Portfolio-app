@@ -1,0 +1,21 @@
+<div class="container">
+  <form (ngSubmit)="send()" #form="ngForm">
+
+    <div>
+      <input type="text" name="title" [(ngModel)]="blog.title" >
+      <input type="checkbox" name=isShow id="isShox" [(ngModel)]="blog.isShow">
+      <button type="submit" mat-raised-button>Enregistrer</button>
+    </div>
+
+    <app-hashtag (blogWithHashtagEvent)="getHashtags($event)"></app-hashtag>
+
+
+
+    <input type="text" name="description" [(ngModel)]="blog.description">
+  </form>
+</div>
+
+
+
+
+
