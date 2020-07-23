@@ -1,0 +1,21 @@
+<div id='section-blog'>
+  <div class='container'>
+      <div class='title'>BLOG</div>
+      <div class="card" *ngFor="let blog of blogs">
+        <div class='column'>
+          <div class="card-blog">
+            <img src="../../../../assets/images/sq_img_2.jpg" alt="">
+            <div>
+              <h3 class="mb-4"><a href="#">{{blog.title}}</a></h3>
+              <div class="block__27192">
+                <p> {{ blog.description }} </p>
+                <a> {{ blog.created_at | date:'longDate' : 'Fr' }}</a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
