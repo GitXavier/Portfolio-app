@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BlogService } from 'src/app/services/blog.service';
+import { Blog } from 'src/app/models/blog';
 
 @Component({
   selector: 'app-site',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SiteComponent implements OnInit {
 
-  constructor() { }
+  blogs: Blog[] = [];
 
-  ngOnInit(): void {
+  constructor(private blogService: BlogService) { }
+
+  ngOnInit(): void { this.getAllBlogs(); }
+
+  getAllBlogs() {
+    this.blogService.getAll().subscribe((blogs) => {
+      this.blogs = blogs;
+    });
   }
 
 }

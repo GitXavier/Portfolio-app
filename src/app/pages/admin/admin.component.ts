@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Blog } from 'src/app/models/blog';
 import { BlogService } from 'src/app/services/blog.service';
 
@@ -10,20 +10,58 @@ import { BlogService } from 'src/app/services/blog.service';
 })
 export class AdminComponent implements OnInit {
 
-  blog: Blog = new Blog();
+  blog = new Blog();
+  blogs: Blog[] = [];
+  blogId: number;
+  valueBlogId = false;
 
   constructor(private blogService: BlogService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { this.getAllBlogs(); }
+
+  deleteBlog(blogId) {
+    this.blogService.delete(blogId).subscribe(() => {
+      this.getAllBlogs();
+    });
+  }
+
+  blogById(blogId) {
+    this.blogService.getById(blogId).subscribe((blog) => {
+      this.blog = blog;
+      this.valueBlogId = true;
+      this.blogId = blogId;
+    });
+  }
+
+  getAllBlogs() {
+    this.blogService.getAll().subscribe((blogs) => {
+      this.blogs = blogs;
+    });
   }
 
   getHashtags(blogHashtag) {
+    console.log(blogHashtag);
     Object.assign(this.blog, blogHashtag);
+    console.log(blogHashtag);
   }
 
   send() {
-    this.blogService.post(this.blog).subscribe();
-    console.log(this.blog);
-  }
 
+    if (this.valueBlogId === true) {
+
+      console.log('patch');
+      console.log(this.blogId);
+      this.blogService.patch(this.blog, this.blogId).subscribe(() => {
+        this.valueBlogId = false;
+        this.blogId = null;
+        this.blog = new Blog();
+        this.getAllBlogs();
+      });
+    } else {
+      console.log('post');
+      this.blogService.post(this.blog).subscribe(() => {
+        this.getAllBlogs();
+      });
+    }
+  }
 }

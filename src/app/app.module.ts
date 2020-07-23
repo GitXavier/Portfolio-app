@@ -22,6 +22,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatChipsModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,10 +4,10 @@
     <div>
       <input type="text" name="title" [(ngModel)]="blog.title" >
       <input type="checkbox" name=isShow id="isShox" [(ngModel)]="blog.isShow">
-      <button type="submit" mat-raised-button>Enregistrer</button>
+      <button type="submit" mat-raised-button>{{valueBlogId ? 'Modifier' : 'Enregistrer' }}</button>
     </div>
 
-    <app-hashtag (blogWithHashtagEvent)="getHashtags($event)"></app-hashtag>
+    <app-hashtag [blog]="blog" (blogWithHashtagEvent)="getHashtags($event)"></app-hashtag>
 
 
 
@@ -15,7 +15,21 @@
   </form>
 </div>
 
-
-
-
+<div class="arrayBlog">
+  <table>
+    <tr>
+      <th>N°</th>
+      <th>Titre</th>
+      <th>Options</th>
+    </tr>
+    <tr *ngFor="let item of blogs">
+      <td>{{ item.id }}</td>
+      <td>{{ item.title}}</td>
+      <td>
+        <a (click)="deleteBlog(item.id)"> Supprimer </a>
+        <a (click)="blogById(item.id)"> Modifier </a>
+      </td>
+    </tr>
+  </table>
+</div>
 

@@ -8,4 +8,27 @@
 
 }
 
+.arrayblog {
+  display: flex;
+}
 
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin: auto;
+}
+
+td a {
+  cursor: pointer;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}

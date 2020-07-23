@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Output, Input } from '@angular/core';
 import { HashtagService } from 'src/app/services/hashtag.service';
 import { Hashtag } from 'src/app/models/hashtag';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
@@ -19,10 +19,18 @@ export interface User {
 })
 export class HashtagComponent implements OnInit {
 
+
   subscription = new Subscription();
   selectable = true;
   removable = true;
-  blog: Blog = new Blog();
+  blogHashtag: Blog = new Blog();
+  @Input() set blog(blog: Blog) {
+
+    if ( blog?.hashtags ) {
+      this.hashtags = blog.hashtags;
+      this.blogHashtag.id = blog.id;
+    }
+  }
   allHashtags: Hashtag[] = [];
   hashtags: Hashtag[] = [];
 
@@ -83,11 +91,11 @@ export class HashtagComponent implements OnInit {
     }
   }
 
-   // Mat-chips method
   selected(event: MatAutocompleteSelectedEvent): void {
     this.hashtags.push(event.option.value);
     this.hashtagCtrl.setValue(null);
-    this.blog.hashtags = [...this.hashtags];
-    this.blogWithHashtagEvent.emit(this.blog);
+    this.blogHashtag.hashtags = [...this.hashtags];
+    this.blogWithHashtagEvent.emit(this.blogHashtag);
+
   }
 }

@@ -12,6 +12,7 @@
 
     .card {
       display: flex;
+
     }
 
     .column {
@@ -30,7 +31,7 @@
     top: 0;
     display: flex;
     max-height: 180px;
-    max-width: 1000px;
+    width: 1000px;
     margin-top: 50px;
 
     img {
@@ -70,8 +71,6 @@
     margin-left: 0;
     color: #495057;
   }
-
-
 
   .card-blog > div .block__27192 > a:hover {
     text-decoration: none;
